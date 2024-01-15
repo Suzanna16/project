@@ -1,0 +1,39 @@
+Задание 1
+scooter_rent=# SELECT c.login, COUNT(o.id) AS deliverycount FROM "Couriers" AS c LEFT JOIN "Orders" AS o ON c.id = o."courierId" WHERE o."inDelivery" = true GROUP BY c.id;
+ login  | deliverycount
+--------+---------------
+ first  |             6
+ second |             4
+ third  |             6
+ fourth |             4
+(4 rows)
+
+
+Задание 2
+scooter_rent=# SELECT track, CASE WHEN finished = true THEN 2 WHEN cancelled = true THEN -1 WHEN "inDelivery" = true THEN 1 ELSE 0 END AS status FROM "Orders";
+ track  | status
+--------+--------
+ 750309 |      1
+ 750309 |      1
+ 167900 |      1
+ 167900 |      1
+ 309283 |      1
+ 309283 |      1
+ 183663 |      1
+ 183663 |      1
+  40407 |      1
+ 437781 |      1
+ 437781 |      1
+ 343744 |      1
+ 343744 |      1
+ 990646 |      1
+ 990646 |      1
+ 806679 |      1
+ 806679 |      1
+ 535191 |      1
+ 535191 |      2
+  40407 |      2
+ 830919 |      0
+ 744467 |     -1
+(22 rows)
+
